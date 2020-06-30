@@ -25,6 +25,7 @@ type ServiceInfo struct {
 	Scheme    string
 	IP        string
 	Port      int
+	Address string
 	Weight    float64
 	Enable    bool
 	Healthy   bool
@@ -32,11 +33,19 @@ type ServiceInfo struct {
 	Region    string
 	Zone      string
 	GroupName string
+	Services map[string]*Service `json:"services" toml:"services"`
+}
+
+type Service struct {
+	Namespace string `json:"namespace" toml:"namespace"`
+	Name string `json:"name" toml:"name"`
+	Labels map[string]string `json:"labels" toml:"labels"`
+	Methods []string `json:"methods" toml:"methods"`
 }
 
 // Label ...
 func (si ServiceInfo) Label() string {
-	return fmt.Sprintf("%s://%s:%d", si.Scheme, si.IP, si.Port)
+	return fmt.Sprintf("%s://%s", si.Scheme, si.Address)
 }
 
 // Server ...
