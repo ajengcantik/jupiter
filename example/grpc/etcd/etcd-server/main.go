@@ -29,7 +29,7 @@ func main() {
 	eng := NewEngine()
 	eng.SetRegistry(
 		compound_registry.New(
-			etcdv3_registry.StdConfig("wh").BuildRegistry(),
+			etcdv3_registry.StdConfig("wh").Build(),
 		),
 	)
 	eng.SetGovernor("127.0.0.1:9092")

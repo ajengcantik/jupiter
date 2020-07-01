@@ -63,6 +63,7 @@ func Zone() string {
 	return zone
 }
 
+// BuildVersion ...
 func BuildVersion() string {
 	return buildVersion
 }

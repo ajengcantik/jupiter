@@ -28,11 +28,12 @@ func (opts CounterVecOpts) Build() *counterVec {
 	}
 }
 
+// NewCounterVec ...
 func NewCounterVec(name string, labels []string) *counterVec {
 	return CounterVecOpts{
 		Namespace: DefaultNamespace,
 		Name:      name,
-		Help: name,
+		Help:      name,
 		Labels:    labels,
 	}.Build()
 }

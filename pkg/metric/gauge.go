@@ -30,11 +30,12 @@ func (opts GaugeVecOpts) Build() *gaugeVec {
 	}
 }
 
+// NewGaugeVec ...
 func NewGaugeVec(name string, labels []string) *gaugeVec {
 	return GaugeVecOpts{
 		Namespace: DefaultNamespace,
 		Name:      name,
-		Help: name,
+		Help:      name,
 		Labels:    labels,
 	}.Build()
 }

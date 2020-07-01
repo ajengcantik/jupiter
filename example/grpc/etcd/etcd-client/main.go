@@ -15,16 +15,17 @@
 package main
 
 import (
+	"fmt"
 	"context"
 	"time"
 
 	"github.com/douyu/jupiter"
 	"github.com/douyu/jupiter/pkg/client/grpc"
+	"github.com/douyu/jupiter/pkg/client/grpc/resolver"
 	etcdv3_registry "github.com/douyu/jupiter/pkg/registry/etcdv3"
 	"github.com/douyu/jupiter/pkg/xlog"
 
 	"google.golang.org/grpc/examples/helloworld/helloworld"
-	"google.golang.org/grpc/resolver"
 )
 
 func main() {
@@ -32,6 +33,7 @@ func main() {
 	if err := eng.Run(); err != nil {
 		xlog.Error(err.Error())
 	}
+	fmt.Printf("111 = %+v\n", 111)
 }
 
 type Engine struct {
@@ -50,7 +52,7 @@ func NewEngine() *Engine {
 }
 
 func (eng *Engine) initResolver() error {
-	resolver.Register(etcdv3_registry.StdConfig("wh").BuildResolver())
+	resolver.Register("etcd", etcdv3_registry.StdConfig("wh").Build())
 	return nil
 }
 
